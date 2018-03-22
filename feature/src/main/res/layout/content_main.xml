@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.kacper.kaccar.feature.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/Forward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/Right"
+                android:layout_marginBottom="31dp"
+                android:layout_toStartOf="@+id/Right"
+                android:layout_weight="1"
+                android:text="Forward"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="264dp" />
+
+            <Button
+                android:id="@+id/Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="1"
+                android:text="Back"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="425dp" />
+
+            <Button
+                android:id="@+id/Right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/Left"
+                android:layout_alignBottom="@+id/Left"
+                android:layout_toEndOf="@+id/Back"
+                android:layout_weight="1"
+                android:text="Right"
+                tools:layout_editor_absoluteX="280dp"
+                tools:layout_editor_absoluteY="344dp" />
+
+            <Button
+                android:id="@+id/Left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/Back"
+                android:layout_marginBottom="24dp"
+                android:layout_toStartOf="@+id/Back"
+                android:layout_weight="1"
+                android:text="Left"
+                tools:layout_editor_absoluteX="30dp"
+                tools:layout_editor_absoluteY="344dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
