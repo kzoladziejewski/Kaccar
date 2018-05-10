@@ -66,6 +66,16 @@
                 android:text="Left"
                 tools:layout_editor_absoluteX="30dp"
                 tools:layout_editor_absoluteY="344dp" />
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="12dp">
+
+            </FrameLayout>
         </RelativeLayout>
 
     </LinearLayout>
