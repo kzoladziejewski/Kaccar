@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mIP"
+        android:title="@string/IPConnect" />
+    <item
+        android:id="@+id/mHistory"
+        android:checkable="false"
+        android:title="@string/history"
+        android:visible="true" />
+    <item
+        android:id="@+id/mVelocity"
+        android:title="@string/velocity" />
+    <item
+        android:id="@+id/mControlling"
+        android:title="@string/controlling" />
+</menu>

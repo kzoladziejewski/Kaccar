@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Kaccar 6.0</string>
+    <string name="history">History</string>
+    <string name="velocity">Velocity</string>
+    <string name="IPConnect">IP Connector</string>
+    <string name="controlling">Controlling</string>
 </resources>
