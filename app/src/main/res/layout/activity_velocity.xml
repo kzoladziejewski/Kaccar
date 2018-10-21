@@ -6,4 +6,41 @@
     android:layout_height="match_parent"
     tools:context="com.example.kacper.kaccar60.Velocity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SeekBar
+            android:id="@+id/mVolume"
+            android:layout_width="360dp"
+            android:layout_height="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="234dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="227dp" />
+
+        <Switch
+            android:id="@+id/mMaxVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mVolume"
+            android:layout_alignStart="@+id/mVolume"
+            android:layout_marginBottom="65dp"
+            android:checked="false"
+
+            android:text="@string/MaxVelocity" />
+
+        <Switch
+            android:id="@+id/mLimitVelocity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mMaxVelocity"
+            android:layout_alignStart="@+id/mMaxVelocity"
+            android:layout_marginBottom="36dp"
+            android:checked="true"
+            android:text="@string/LimitVelocity" />
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

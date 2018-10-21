@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         mConnect = (EditText) findViewById(R.id.editText);
         mStop = (Button) findViewById(R.id.mStop);
         mAccept = (Button) findViewById(R.id.mAccept);
-        mVelocitye = (SeekBar) findViewById(R.id.mVolume);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,22 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 mConnectionIP = mConnect.getText().toString();
             }
         });
-        mVelocitye.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                velocity = progress;
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

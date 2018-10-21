@@ -4,4 +4,6 @@
     <string name="velocity">Velocity</string>
     <string name="IPConnect">IP Connector</string>
     <string name="controlling">Controlling</string>
+    <string name="MaxVelocity">Max Velocity</string>
+    <string name="LimitVelocity">Limit Velocity</string>
 </resources>

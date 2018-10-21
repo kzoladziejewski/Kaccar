@@ -71,14 +71,6 @@
             android:layout_alignStart="@+id/mRight"
             android:text="STOP" />
 
-        <SeekBar
-            android:id="@+id/mVolume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/mForward"
-            android:layout_alignEnd="@+id/mStop"
-            android:layout_alignStart="@+id/editText"
-            android:layout_marginBottom="35dp" />
 
         <Button
             android:id="@+id/mAccept"
