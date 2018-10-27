@@ -22,7 +22,8 @@
         <activity android:name=".IPConnector" />
         <activity android:name=".History" />
         <activity android:name=".Velocity" />
-        <activity android:name=".Controlling"></activity>
+        <activity android:name=".Controlling" />
+
     </application>
 
 </manifest>

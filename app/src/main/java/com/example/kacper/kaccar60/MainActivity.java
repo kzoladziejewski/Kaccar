@@ -31,18 +31,22 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class MainActivity extends AppCompatActivity {
-    public String mConnectionIP = "192.168.1.5";
-    public int velocity = 0;
-    String sendingData;
-    Button mLeft, mForward, mBack, mRight, mStop, mAccept;
-    EditText mConnect;
-    SeekBar mVelocitye;
 
+    String sendingData;
+    Button mLeft, mForward, mBack, mRight, mStop;
+    Intent intentVelocity, intentIPConnector,intentHistory,intentControlling;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        Log.e("MAIN ACTIVITY", "ON CREATE WYWOLANE");
+        this.intentVelocity = new Intent(this, Velocity.class);
+        this.intentIPConnector = new Intent(this, IPConnector.class);
+        this.intentHistory = new Intent(this, History.class);
+        this.intentControlling = new Intent(this, Controlling.class);
         setContentView(R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
@@ -54,14 +58,16 @@ public class MainActivity extends AppCompatActivity {
         mRight = (Button) findViewById(R.id.mRight);
         mForward = (Button) findViewById(R.id.mForward);
         mBack = (Button) findViewById(R.id.mBack);
-        mConnect = (EditText) findViewById(R.id.editText);
         mStop = (Button) findViewById(R.id.mStop);
-        mAccept = (Button) findViewById(R.id.mAccept);
+        getIntent().putExtra("ipConnector", "dupa");
+        getIntent().putExtra("velocity", "dupa");
+
+        final Sending sending = new Sending();
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    SendData("Back");
+                    sending.SendData("Back");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    SendData("Forward");
+                    sending.SendData("Forward");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    SendData("Left");
+                    sending.SendData("Left");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -94,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    SendData("Right");
+                    sending.SendData("Right");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -105,20 +111,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    SendData("STOP");
+                    sending.SendData("STOP");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-
-        mAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mConnectionIP = mConnect.getText().toString();
-            }
-        });
 
     }
     @Override
@@ -129,43 +128,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item) {int id = item.getItemId();
         if (id == R.id.mVelocity)
         {
-            startActivity(new Intent(this, Velocity.class));
+            startActivityForResult(intentVelocity,1);
+//            startActivity(new Intent(this, Velocity.class));
         }
         if (id == R.id.mIP)
         {
-            startActivity(new Intent(this, IPConnector.class));
+//            startActivity(new Intent(this, IPConnector.class));
+            startActivityForResult(intentIPConnector,1);
+
         }
         if (id == R.id.mHistory)
         {
-            startActivity(new Intent(this, History.class));
+//            startActivity(new Intent(this, History.class));
+//            startActivityForResult(intentHistory,1);
+
         }
         if (id == R.id.mControlling)
         {
-            startActivity(new Intent(this, Controlling.class));
+//            startActivity(new Intent(this, Controlling.class));
+//            startActivityForResult(intentControlling,1);
+
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void SendData(String sending) throws IOException {
-
-        sendingData= "http://"+mConnectionIP+"/?GET="+sending+"&POST="+velocity;
-        Log.e("Failed?", sendingData);
-        URL url = new URL(sendingData);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try{
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        } finally {
-            urlConnection.disconnect();
-        }
-
-
-    }
-
-
 
 
 }

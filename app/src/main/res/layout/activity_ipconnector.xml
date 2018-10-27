@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context="com.example.kacper.kaccar60.IPConnector">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/mAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editText"
+            android:layout_below="@+id/editText"
+            android:text="Accept"
+            tools:layout_editor_absoluteX="266dp"
+            tools:layout_editor_absoluteY="554dp" />
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="17dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="IP_Connect" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
