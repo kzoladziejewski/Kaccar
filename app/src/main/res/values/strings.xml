@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kaccar 6.0</string>
+    <string name="app_name" translatable="false">Kaccar 6.0</string>
     <string name="history">History</string>
     <string name="velocity">Velocity</string>
     <string name="IPConnect">IP Connector</string>
@@ -7,4 +7,9 @@
     <string name="MaxVelocity">Max Velocity</string>
     <string name="LimitVelocity">Limit Velocity</string>
     <string name="ChangeControl">Change Control</string>
+    <string name="Forward">Forward</string>
+    <string name="Back">Back</string>
+    <string name="Left">Left</string>
+    <string name="Right">Right</string>
+    <string name="Stop" translatable="false">Stop</string>
 </resources>

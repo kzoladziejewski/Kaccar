@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaccar 6.0</string>
+    <string name="history">Historia</string>
+    <string name="velocity">Prędkość</string>
+    <string name="IPConnect">Adres IP</string>
+    <string name="controlling">Sterowanie</string>
+    <string name="MaxVelocity">Prędkość</string>
+    <string name="LimitVelocity">Limit prędkośći</string>
+    <string name="Forward">Do przodu</string>
+    <string name="Back">Do tyłu</string>
+    <string name="Left">W lewo</string>
+    <string name="Right">W prawo</string>
+</resources>

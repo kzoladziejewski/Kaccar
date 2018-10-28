@@ -1,12 +1,7 @@
 package com.example.kacper.kaccar60;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -28,6 +23,7 @@ public class Sending extends AppCompatActivity {
 
 //        String sendingData= "http://"+ip+"/?GET="+sending+"&POST="+velocity;
         String sendingData = "FIND ANY WAY!";
+//        @TODO FINISH A JOB
         Log.e("Failed?", sendingData);
         URL url = new URL(sendingData);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
