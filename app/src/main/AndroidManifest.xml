@@ -19,12 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IPConnector" />
         <activity android:name=".History" />
-        <activity android:name=".Velocity" />
-        <activity android:name=".Controlling" />
-        <activity android:name=".Sending"/>
-
+        <activity android:name=".Sending" />
+        <activity android:name=".Settings"></activity>
     </application>
 
 </manifest>

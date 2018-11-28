@@ -12,4 +12,9 @@
     <string name="Left">Left</string>
     <string name="Right">Right</string>
     <string name="Stop" translatable="false">Stop</string>
+    <string name="Settings">Settings</string>
+    <string name="Accept">Accept</string>
+    <string name="StandardRes" />
+    <string name="StandardClick">One click</string>
+    <string name="PressClick">Press click</string>
 </resources>

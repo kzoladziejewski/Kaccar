@@ -1,8 +1,13 @@
 package com.example.kacper.kaccar60;
 
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -15,14 +20,14 @@ import java.net.URL;
  */
 
 public class Sending extends AppCompatActivity {
-//    String sengingData = "http://192.168.1.11";
 
-//    String ipConnector = getIntent().getStringExtra("ipConnector");
 
-    public void SendData(String sending) throws IOException {
+    public void SendData(String ip, String sending, int velocity) throws IOException {
+//        SharedPreferences settings;
+//        settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+//        String ip = settings.getString("mConnectionIP","192.168.1.11");
 
-//        String sendingData= "http://"+ip+"/?GET="+sending+"&POST="+velocity;
-        String sendingData = "FIND ANY WAY!";
+        String sendingData = "http://"+ip+"/?GET="+sending+"&POST="+velocity;
 //        @TODO FINISH A JOB
         Log.e("Failed?", sendingData);
         URL url = new URL(sendingData);

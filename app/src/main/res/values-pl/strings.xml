@@ -11,4 +11,8 @@
     <string name="Back">Do tyłu</string>
     <string name="Left">W lewo</string>
     <string name="Right">W prawo</string>
+    <string name="Settings">Ustawienia</string>
+    <string name="Accept">Akceptuj</string>
+    <string name="StandardClick">Jeden klik</string>
+    <string name="PressClick">Przytrzymaj</string>
 </resources>

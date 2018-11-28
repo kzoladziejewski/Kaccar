@@ -1,6 +1,8 @@
 package com.example.kacper.kaccar60;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,16 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
     String sendingData;
     Button mLeft, mForward, mBack, mRight, mStop;
-    Intent intentVelocity, intentIPConnector,intentHistory,intentControlling;
+    Intent intentSettings, intentHistory;
+    public int velocity= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Log.e("MAIN ACTIVITY", "ON CREATE WYWOLANE");
-        this.intentVelocity = new Intent(this, Velocity.class);
-        this.intentIPConnector = new Intent(this, IPConnector.class);
+        this.intentSettings = new Intent(this, Settings.class);
         this.intentHistory = new Intent(this, History.class);
-        this.intentControlling = new Intent(this, Controlling.class);
+
         setContentView(R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
@@ -59,67 +60,60 @@ public class MainActivity extends AppCompatActivity {
         mForward = (Button) findViewById(R.id.mForward);
         mBack = (Button) findViewById(R.id.mBack);
         mStop = (Button) findViewById(R.id.mStop);
-        getIntent().putExtra("ipConnector", "dupa");
-        getIntent().putExtra("velocity", "dupa");
 
+        //getIntent().putExtra("ipConnector", "?");
+        //getIntent().putExtra("velocity", "??");
+        SharedPreferences settings;
+        settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        Log.e("MAIN BO MAIN", ip);
         final Sending sending = new Sending();
+
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sending.SendData("Back");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                sendMesage(sending,"back");
 
             }
         });
+
         mForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sending.SendData("Forward");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sendMesage(sending,"forward");
 
             }
         });
         mLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sending.SendData("Left");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                sendMesage(sending,"left");
             }
         });
         mRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sending.SendData("Right");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sendMesage(sending,"right");
+
 
             }
         });
         mStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sending.SendData("STOP");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sendMesage(sending,"stop");
+
             }
         });
 
 
+
+
+
+
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -129,31 +123,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {int id = item.getItemId();
-        if (id == R.id.mVelocity)
+        if (id == R.id.mSettings)
         {
-            startActivityForResult(intentVelocity,1);
-//            startActivity(new Intent(this, Velocity.class));
+            startActivityForResult(intentSettings,1);
         }
-        if (id == R.id.mIP)
-        {
-//            startActivity(new Intent(this, IPConnector.class));
-            startActivityForResult(intentIPConnector,1);
 
-        }
         if (id == R.id.mHistory)
         {
-//            startActivity(new Intent(this, History.class));
-//            startActivityForResult(intentHistory,1);
-
-        }
-        if (id == R.id.mControlling)
-        {
-//            startActivity(new Intent(this, Controlling.class));
-//            startActivityForResult(intentControlling,1);
+            startActivityForResult(intentHistory,1);
 
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public void sendMesage(Sending sending,String mesage){
+        String ip = settings.getString("mConnectionIP","192.168.1.11");
 
+        try {
+            sending.SendData("aaaa","Right",velocity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }}
 }
