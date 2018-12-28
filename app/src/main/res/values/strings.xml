@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Kaccar 6.0</string>
-    <string name="history">History</string>
+    <string name="history">IP Finder</string>
     <string name="velocity">Velocity</string>
     <string name="IPConnect">IP Connector</string>
     <string name="controlling">Controlling</string>
@@ -16,7 +16,7 @@
     <string name="Accept">Accept</string>
     <string name="StandardRes" />
     <string name="StandardClick">One click</string>
-    <string name="PressClick">Press click</string>
+    <string name="PressClick">Continiusly</string>
     <string name="InfoVelo">Your actual velocity:</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -3,6 +3,8 @@
     package="com.example.kacper.kaccar60">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -25,6 +27,10 @@
 
         <service
             android:name=".Sender_service"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".History_service"
             android:enabled="true"
             android:exported="true"></service>
     </application>

@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //USTAWIENIA
-        click = settings.getBoolean("ClickMode",true);
         mBack = (Button) findViewById(R.id.mBack);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("command","Forward");
-//                editor.apply();
-//                startActivityForResult(intentSender,1);
+
 
                 send("Forward",1);
 
@@ -84,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("command","Left");
-//                editor.apply();
-//                startActivityForResult(intentSender,1);
+
                 send("Left",1);
 
             }
@@ -95,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("command","Right");
-//                editor.apply();
-//                startActivityForResult(intentSender,1);
+
 
                 send("Right",1);
 
@@ -107,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
         mStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("command","STOP");
-//                editor.apply();
-//                startActivityForResult(intentSender,1);
+
                 send("Stop",0);
 
             }
@@ -120,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         final int[] speed = {settings.getInt("speed", 0)};
         velocity = settings.getBoolean("VelocityMode", true);
-
+        click = settings.getBoolean("ClickMode",true);
+        int maxVelocity = settings.getInt("Progress_velocity", 50);
         Log.e("SEND", String.valueOf(velocity));
         Log.e("SEND", String.valueOf(speed[0]));
 
@@ -130,21 +122,28 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("speed", speed[0]);
         }
         else {
-            speed[0] = speed[0] +inte;
+
+            if (speed[0] < maxVelocity && speed[0] > 0){
+            speed[0] = speed[0] +inte;}
+
             Log.e("MOJA MILA", String.valueOf(speed[0]));
             editor.putString("command",command);
             editor.putInt("speed", speed[0]);
             editor.putInt("velocity", speed[0]);
         }
 
-        editor.apply();
-//        startActivityForResult(intentSender,3);
+
+        if (!click) {
+            editor.putBoolean("finish",true);
+
+        }
+            editor.apply();
         Intent intent = new Intent(MainActivity.this, Sender_service.class);
-    startService(intent);
-    stopService(intent);
+        startService(intent);
+        stopService(intent);
 
     }
-    //}
+
 
 
     @Override

@@ -32,13 +32,7 @@ public class Sender_service extends Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                finish();
-//            }
-//        },100);
+
     }
 
     public void sendData() throws Exception
@@ -46,9 +40,11 @@ public class Sender_service extends Service {
         SharedPreferences settings;
         String ip, command;
         int velocity;
+        boolean stop;
         settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         ip = settings.getString("ipconnect","192.168.100.1");
         command = settings.getString("command","STOP");
+        stop = settings.getBoolean("finish",false);
         velocity = settings.getInt("velocity",50);
 //        URL url = new URL("http://156.17.148.88/");
         URL url = new URL("http://"+ip+"/?GET="+command+"&POST="+velocity);
@@ -56,16 +52,22 @@ public class Sender_service extends Service {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try{
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            int a = urlConnection.getResponseCode();
-            String ab = urlConnection.getResponseMessage();
         }
         finally {
             urlConnection.disconnect();
         }
+
+        if (stop)
+        {
+             url = new URL("http://"+ip+"/?GET="+"Stop"+"&POST="+velocity);
+             urlConnection = (HttpURLConnection) url.openConnection();
+            try{
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            }
+            finally {
+                urlConnection.disconnect();
+            }
+
+        }
     }
-
-
-
-
-
 }

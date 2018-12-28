@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kaccar 6.0</string>
-    <string name="history">Historia</string>
+    <string name="history">Wyszukiwacz ip</string>
     <string name="velocity">Prędkość</string>
     <string name="IPConnect">Adres IP</string>
     <string name="controlling">Sterowanie</string>
@@ -14,6 +14,6 @@
     <string name="Settings">Ustawienia</string>
     <string name="Accept">Akceptuj</string>
     <string name="StandardClick">Jeden klik</string>
-    <string name="PressClick">Przytrzymaj</string>
+    <string name="PressClick">Kontynucja jazy</string>
     <string name="InfoVelo">Your actual velocity:</string>
 </resources>
