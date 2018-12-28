@@ -36,18 +36,19 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class MainActivity extends AppCompatActivity {
-
-    String sendingData;
+    SharedPreferences settings;
     Button mLeft, mForward, mBack, mRight, mStop;
-    Intent intentSettings, intentHistory;
-    public int velocity= 0;
+    Intent intentSettings, intentHistory,intentSender;
+    Boolean click, velocity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        this.intentSender = new Intent(this, Sender_service.class);
         super.onCreate(savedInstanceState);
         this.intentSettings = new Intent(this, Settings.class);
         this.intentHistory = new Intent(this, History.class);
-
         setContentView(R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
@@ -55,63 +56,95 @@ public class MainActivity extends AppCompatActivity {
                     StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        mLeft = (Button) findViewById(R.id.mLeft);
-        mRight = (Button) findViewById(R.id.mRight);
-        mForward = (Button) findViewById(R.id.mForward);
+
+        //USTAWIENIA
+        click = settings.getBoolean("ClickMode",true);
         mBack = (Button) findViewById(R.id.mBack);
-        mStop = (Button) findViewById(R.id.mStop);
-
-        //getIntent().putExtra("ipConnector", "?");
-        //getIntent().putExtra("velocity", "??");
-        SharedPreferences settings;
-        settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        Log.e("MAIN BO MAIN", ip);
-        final Sending sending = new Sending();
-
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                sendMesage(sending,"back");
+            send("Back", -1);
 
             }
         });
 
+        mForward = (Button) findViewById(R.id.mForward);
         mForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMesage(sending,"forward");
+//                editor.putString("command","Forward");
+//                editor.apply();
+//                startActivityForResult(intentSender,1);
+
+                send("Forward",1);
 
             }
         });
+        mLeft = (Button) findViewById(R.id.mLeft);
         mLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMesage(sending,"left");
+//                editor.putString("command","Left");
+//                editor.apply();
+//                startActivityForResult(intentSender,1);
+                send("Left",1);
+
             }
         });
+        mRight = (Button) findViewById(R.id.mRight);
         mRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMesage(sending,"right");
+//                editor.putString("command","Right");
+//                editor.apply();
+//                startActivityForResult(intentSender,1);
 
+                send("Right",1);
 
             }
         });
+        mStop = (Button) findViewById(R.id.mStop);
         mStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMesage(sending,"stop");
+//                editor.putString("command","STOP");
+//                editor.apply();
+//                startActivityForResult(intentSender,1);
+                send("Stop",0);
 
             }
-        });
+        });}
 
+        void send(String command, int inte)
+    {
+        SharedPreferences.Editor editor = settings.edit();
+        final int[] speed = {settings.getInt("speed", 0)};
+        velocity = settings.getBoolean("VelocityMode", true);
 
+        Log.e("SEND", String.valueOf(velocity));
+        Log.e("SEND", String.valueOf(speed[0]));
 
+        if (velocity){
 
+            editor.putString("command",command);
+            editor.putInt("speed", speed[0]);
+        }
+        else {
+            speed[0] = speed[0] +inte;
+            Log.e("MOJA MILA", String.valueOf(speed[0]));
+            editor.putString("command",command);
+            editor.putInt("speed", speed[0]);
+            editor.putInt("velocity", speed[0]);
+        }
 
+        editor.apply();
+//        startActivityForResult(intentSender,3);
+        Intent intent = new Intent(MainActivity.this, Sender_service.class);
+    startService(intent);
+    stopService(intent);
 
     }
+    //}
 
 
     @Override
@@ -136,12 +169,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendMesage(Sending sending,String mesage){
-        String ip = settings.getString("mConnectionIP","192.168.1.11");
-
-        try {
-            sending.SendData("aaaa","Right",velocity);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }}
 }

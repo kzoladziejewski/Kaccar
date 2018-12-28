@@ -15,4 +15,5 @@
     <string name="Accept">Akceptuj</string>
     <string name="StandardClick">Jeden klik</string>
     <string name="PressClick">Przytrzymaj</string>
+    <string name="InfoVelo">Your actual velocity:</string>
 </resources>

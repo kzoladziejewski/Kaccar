@@ -20,8 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".History" />
-        <activity android:name=".Sending" />
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings" />
+        <activity android:name=".Sender" />
+
+        <service
+            android:name=".Sender_service"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
