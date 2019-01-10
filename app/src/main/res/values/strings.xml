@@ -18,7 +18,8 @@
     <string name="StandardClick">One click</string>
     <string name="PressClick">Continiusly</string>
     <string name="InfoVelo">Your actual velocity:</string>
-
+    <string name="SettingVelocity">Velocity "\n" setting</string>
+    <string name="SettingClick">Move "\n" setting</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -43,10 +43,9 @@ public class Sender_service extends Service {
         boolean stop;
         settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         ip = settings.getString("ipconnect","192.168.100.1");
-        command = settings.getString("command","STOP");
+        command = settings.getString("command","Stop");
         stop = settings.getBoolean("finish",false);
         velocity = settings.getInt("velocity",50);
-//        URL url = new URL("http://156.17.148.88/");
         URL url = new URL("http://"+ip+"/?GET="+command+"&POST="+velocity);
         Log.e("Sender", String.valueOf(url));
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -59,6 +58,7 @@ public class Sender_service extends Service {
 
         if (stop)
         {
+            Log.e("STO", "MAM BLOKOWAC SERWIS");
              url = new URL("http://"+ip+"/?GET="+"Stop"+"&POST="+velocity);
              urlConnection = (HttpURLConnection) url.openConnection();
             try{

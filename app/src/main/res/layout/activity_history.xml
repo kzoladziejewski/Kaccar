@@ -17,7 +17,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="27dp"
-            android:text="Button" />
+            android:layout_marginTop="27dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mIPlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/mRefresh"
+            android:layout_marginTop="22dp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

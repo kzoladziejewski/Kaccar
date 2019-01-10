@@ -106,42 +106,76 @@ public class MainActivity extends AppCompatActivity {
             }
         });}
 
+        @Override
+        protected void onResume()
+        {
+            super.onResume();
+        }
         void send(String command, int inte)
-    {
+        {
+
         SharedPreferences.Editor editor = settings.edit();
+
         final int[] speed = {settings.getInt("speed", 0)};
         velocity = settings.getBoolean("VelocityMode", true);
         click = settings.getBoolean("ClickMode",true);
         int maxVelocity = settings.getInt("Progress_velocity", 50);
+
         Log.e("SEND", String.valueOf(velocity));
         Log.e("SEND", String.valueOf(speed[0]));
 
-        if (velocity){
-
+        if (velocity && click)
+        {
+            Log.e("MAIN_ACTIVITY","VELO AND CLICK");
             editor.putString("command",command);
             editor.putInt("speed", speed[0]);
-        }
-        else {
-
-            if (speed[0] < maxVelocity && speed[0] > 0){
-            speed[0] = speed[0] +inte;}
-
-            Log.e("MOJA MILA", String.valueOf(speed[0]));
-            editor.putString("command",command);
-            editor.putInt("speed", speed[0]);
-            editor.putInt("velocity", speed[0]);
-        }
-
-
-        if (!click) {
-            editor.putBoolean("finish",true);
+            editor.putBoolean("finish",false);
 
         }
+        if (velocity && !click)
+            {
+                Log.e("MAIN_ACTIVITY","VELO AND NO-CLICK");
+                editor.putBoolean("finish",true);
+                editor.putString("command",command);
+                editor.putInt("speed", speed[0]);
+                editor.putBoolean("finish",true);
+            }
+            if (!velocity && click)
+            {
+                Log.e("MAIN_ACTIVITY","NO VELO AND CLICK");
+
+                if ((speed[0] <= maxVelocity) && (speed[0] >= 0))
+                {
+                    speed[0] = speed[0] +inte;
+                }
+
+                Log.e("MOJA MILA", String.valueOf(speed[0]));
+                editor.putBoolean("finish",false);
+                editor.putString("command",command);
+                editor.putInt("speed", speed[0]);
+                editor.putInt("velocity", speed[0]);
+            }
+            if (!velocity && !click)
+            {
+                Log.e("MAIN_ACTIVITY","NO -VELO AND NO-CLICK");
+
+
+                if ((speed[0] <= maxVelocity) && (speed[0] >= 0))
+                {
+                    speed[0] = speed[0] +inte;
+                }
+
+                Log.e("MOJA MILA", String.valueOf(speed[0]));
+                editor.putBoolean("finish",true);
+                editor.putString("command",command);
+                editor.putInt("speed", speed[0]);
+                editor.putInt("velocity", speed[0]);
+                editor.putBoolean("finish",true);
+            }
             editor.apply();
-        Intent intent = new Intent(MainActivity.this, Sender_service.class);
-        startService(intent);
-        stopService(intent);
-
+            Intent intent = new Intent(MainActivity.this, Sender_service.class);
+            startService(intent);
+            stopService(intent);
     }
 
 

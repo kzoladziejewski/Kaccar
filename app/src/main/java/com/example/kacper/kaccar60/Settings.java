@@ -13,12 +13,10 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 
 public class Settings extends AppCompatActivity {
-    public int aavelocity = 0;
     SeekBar mVelocity;
     Switch mClick,mVelocityClick;
     SharedPreferences settings;
     EditText mIPConnector;
-    Button mAccept;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
@@ -37,13 +35,13 @@ public class Settings extends AppCompatActivity {
         mVelocityClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (mVelocityClick.isChecked()){
-                    settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = settings.edit();
+
                     editor.putInt("velocity", mVelocity.getProgress());
                     editor.putInt("Progress_velocity", mVelocity.getProgress());
                     editor.apply();
+                }
+                else {
 
                 }
             }
@@ -94,7 +92,7 @@ public class Settings extends AppCompatActivity {
         editor.putString("ipconnect", String.valueOf(mIPConnector.getText()));
         editor.putBoolean("VelocityMode", mVelocityClick.isChecked());
         editor.putBoolean("ClickMode", mClick.isChecked());
-        editor.putInt("speed", 0);
+//        editor.putInt("speed", 0);
 
         Log.e("VelocityMode", String.valueOf(mVelocityClick.isChecked()));
         Log.e("ClickMode", String.valueOf(mClick.isChecked()));

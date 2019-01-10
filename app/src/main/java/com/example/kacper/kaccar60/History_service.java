@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 
 public class History_service extends Service {
+    List<String> udane_ip = new ArrayList<>();
+
     public History_service() {
     }
 
@@ -34,7 +36,6 @@ public class History_service extends Service {
         SharedPreferences.Editor editor = settings.edit();
         WifiManager mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         long bramka = mWifiManager.getDhcpInfo().gateway;
-        List<String> udane_ip = new ArrayList<>();
         String bramka_ip = String.format(
                 "%d.%d.%d",
                 (bramka & 0xff),
@@ -45,7 +46,6 @@ public class History_service extends Service {
             String ip=bramka_ip+"."+i;
             try {
                 if(InetAddress.getByName(ip).isReachable(25)){
-                    Log.e("MAM",ip);
                     udane_ip.add(ip);
                 }
             } catch (IOException e) {
@@ -54,7 +54,7 @@ public class History_service extends Service {
 
         }
         editor.putString("data", String.valueOf(udane_ip));
-
+        editor.apply();
     }
 
 
